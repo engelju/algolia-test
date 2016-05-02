@@ -8,5 +8,6 @@ namespace App\Interfaces;
  */
 interface SearchInterface
 {
-    public function someFunction();
+    public function index($searchIndex);
+    public function find($searchQuery, $searchOptions);
 }
