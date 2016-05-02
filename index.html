@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Algolia with JS</title>
+    </head>
+    <body>
+        <script src="http://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+        <script>
+            (function() {
+                var client = algoliasearch("3VC8H0ZENS", '72ae395f553cb3d20c166e493b84f4d7');
+                var index = client.initIndex('exampleContacts');
+
+                index.search('Kevin', function searchDone(err, results) {
+                    console.log(results)
+                });
+            })();
+        </script>
+    </body>
+</html>
