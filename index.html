@@ -6,16 +6,29 @@
         <title>Algolia with JS</title>
     </head>
     <body>
+        <div class="results">
+            <article v-repeat="user: users">
+                <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+                <h4>{{ user.company }}</h4>
+            </article>
+        </div>
         <script src="http://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.1/vue.js"></script>
         <script>
-            (function() {
-                var client = algoliasearch("3VC8H0ZENS", '72ae395f553cb3d20c166e493b84f4d7');
-                var index = client.initIndex('exampleContacts');
+            new Vue({
+                el: 'body',
 
-                index.search('Kevin', function searchDone(err, results) {
-                    console.log(results)
-                });
-            })();
+                data: { users: [] },
+
+                ready: function() {
+                    var client = algoliasearch("3VC8H0ZENS", '72ae395f553cb3d20c166e493b84f4d7');
+                    var index = client.initIndex('exampleContacts');
+
+                    index.search('Kevin', function searchDone(err, results) {
+                        this.users = results.hits;
+                    }.bind(this));
+                }
+            });
         </script>
     </body>
 </html>
