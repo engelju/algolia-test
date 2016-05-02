@@ -16,8 +16,9 @@ $searchOptions = [
     //"hitsPerPage" => 2,
 ];
 
-$search = new \App\Search;
-$results = $search->index('exampleContacts')->get($searchQuery, $searchOptions);
+// todo: use serviceprovider
+$search = new \App\AlgoliaSearch;
+$results = $search->index('exampleContacts')->find($searchQuery, $searchOptions);
 
 if ($results) {
     echo("found ".count($results)." hits:");
