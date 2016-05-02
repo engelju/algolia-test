@@ -11,6 +11,10 @@ if (PHP_SAPI === 'cli') {
     die('sorry, only cli access is supported rn :(');
 }
 
+// load conf
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
 $searchOptions = [
     "attributesToRetrieve" => "firstname,lastname",
     //"hitsPerPage" => 2,

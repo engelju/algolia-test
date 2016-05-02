@@ -15,7 +15,8 @@ class AlgoliaSearch implements SearchInterface
 
     public function __construct()
     {
-        $this->client = new \AlgoliaSearch\Client("3VC8H0ZENS", "a156adee94868ae9d981ae9f1df2ff49");
+        $this->client = new \AlgoliaSearch\Client(
+            getenv('ALGOLIA_APP_ID'), getenv('ALGOLIA_API_KEY'));
     }
 
     public function index($searchIndex)
