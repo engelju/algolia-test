@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 if (PHP_SAPI === 'cli') {
     if ($argc === 2) {
@@ -12,9 +12,12 @@ if (PHP_SAPI === 'cli') {
     die('sorry, only cli access is supported rn :(');
 }
 
+// load conf
+$dotenv = new Dotenv\Dotenv(__DIR__ .'/../');
+$dotenv->load();
+
 // init index
-// todo: utilise getenv()
-$client = new \AlgoliaSearch\Client("3VC8H0ZENS", "a156adee94868ae9d981ae9f1df2ff49");
+$client = new \AlgoliaSearch\Client(getenv('ALGOLIA_APP_ID'), getenv('ALGOLIA_API_KEY'));
 $index = $client->initIndex("exampleContacts");
 
 // search index
